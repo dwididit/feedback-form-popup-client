@@ -40,7 +40,8 @@ This project includes a Vue.js frontend for the Feedback Form Popup application.
 
 3. **Build and run the application using Docker Compose**:
     ```bash
-    docker-compose up --build -d
+    docker compose build
+    docker compose up -d
     ```
 
 The application will run at: http://localhost
