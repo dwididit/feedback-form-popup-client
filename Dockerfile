@@ -1,29 +1,29 @@
-# Stage 1: Build the Vue.js app
-FROM node:14.20.1-alpine as build-stage
+# Use the official Node.js 14 image as the base image
+FROM node:14
 
-# Set the working directory in the container
+# Set the working directory inside the container to /app
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available)
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install dependencies
+# Install the dependencies specified in package.json
 RUN npm install
 
 # Copy the rest of the application code to the container
 COPY . .
 
-# Build the Vue.js app
+# Define a build argument for the backend URL
+ARG VUE_APP_BACKEND_URL
+
+# Set the environment variable for the backend URL using the build argument
+ENV VUE_APP_BACKEND_URL=${VUE_APP_BACKEND_URL}
+
+# Build the application for production
 RUN npm run build
 
-# Stage 2: Serve the Vue.js app with Nginx
-FROM nginx:stable-alpine as production-stage
-
-# Copy the built files from the previous stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-
-# Expose port 80
+# Expose port 8080 to be accessible from outside the container
 EXPOSE 8080
 
-# Command to run Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Use npx to serve the production build from the dist directory
+CMD ["npx", "serve", "-s", "dist"]
