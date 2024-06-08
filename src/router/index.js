@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import Success from "@/components/Success.vue";
+import Success from "../views/Success.vue";
 
 Vue.use(VueRouter);
 
@@ -16,7 +16,7 @@ const routes = [
     path: '/success',
     name: 'Success',
     component: Success,
-    meta: { title: 'Feedback Form Pop Up' }
+    meta: { title: 'Feedback Submitted Successfully' }
   }
 ];
 
