@@ -266,10 +266,9 @@ export default {
         this.resetForm();
         const modal = bootstrap.Modal.getInstance(document.getElementById('ratingModal'));
         modal.hide();
-        await this.$router.push('/success');
+        await this.$router.push('/');
       } catch (error) {
         console.error("Error submitting feedback:", error);
-        this.showAlert("Error submitting feedback", "alert-danger");
         this.isLoading = false;
       }
     },
@@ -334,8 +333,11 @@ export default {
       this.editFullName = "";
       this.editEmail = "";
     },
-    toggleFeedback() {
+    async toggleFeedback() {
       this.showFeedback = !this.showFeedback;
+      if (this.showFeedback) {
+        await this.fetchFeedback();
+      }
     },
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY, hh:mm A");

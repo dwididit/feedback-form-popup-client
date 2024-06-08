@@ -38,13 +38,13 @@ This project includes a Vue.js frontend for the Feedback Form Popup application.
    VUE_APP_BACKEND_URL=http://localhost:8000
    ```
 
-3. **Build and run the application using Docker Compose**:
+3. **Build and run the application using Dockerfile**:
     ```bash
-    docker compose build
-    docker compose up -d
+    docker build -t vue-app .
+    docker run -d -p 8081:8080 --name vue-app vue-app
     ```
 
-The application will run at: http://localhost
+The application will run at: http://localhost/8081
 
 
 ## Contributing
