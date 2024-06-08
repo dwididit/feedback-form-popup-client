@@ -1,0 +1,14 @@
+services:
+  vue-app:
+    container_name: my-vue-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VUE_APP_BACKEND_URL: ${VUE_APP_BACKEND_URL}
+    environment:
+      - VUE_APP_BACKEND_URL=${VUE_APP_BACKEND_URL}
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
