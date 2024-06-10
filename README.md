@@ -44,7 +44,7 @@ This project includes a Vue.js frontend for the Feedback Form Popup application.
     docker run -d -p 8081:8080 --name vue-app vue-app
     ```
 
-The application will run at: http://localhost/8081
+The application will run at: http://localhost:8081
 
 
 ## Contributing
